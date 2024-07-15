@@ -5,13 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TÍTULO</title>
     <link rel="stylesheet" href="Style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/pt-br.js"></script>
+    <script>dayjs.locale('pt-br')</script>
 </head>
 <body>
-    <h1>Atividades</h1>
-    <section>
+    
+    <form onsubmit="salvarAtividade(event)">
+        <div>
+            <input
+                type="text"
+                placeholder="Qual a atividade?"
+                name="atividade"
+                required
+            >
+        </div>
 
-    </section>
-    <script src="Script.js"></script>
+        <div>
+            <select name="dia">
+                    <option value="2024-03-01">01 de fevereiro</option>
+            </select>
+        </div>
+
+        <div>
+            <select name="hora">
+                <option value="10:30">10:30</option>
+            </select>
+        </div>
+        <button>Salvar atividade</button>
+    </form>
+
+    <main>
+        <h1>Atividades</h1>
+        <section></section>
+        <script src="Script.js"></script>
+    </main>
 </body>
 </html>
