@@ -38,16 +38,18 @@ let atividades =
 
 const criarItemDaAtividade = (atividade) =>
 {
-  let input = '<input type="checkbox" !checked>'
-  /*Outra forma de se fazer, mas concatenando
-  let input = '<input type="checkbox" '*/
-
+  let input = `
+  <input
+  onchange="concluirAtividade(event)"
+  value="${atividade.data}"
+  type="checkbox"
+  `
+  
   if(atividade.finalizada)
   {
-    input = '<input type="checkbox" checked>'
-    //input += 'checked'
+    input += 'checked'
   }
-  //input += '>'*/
+  input += '>'
 
   const formatar = formatador(atividade.data);
 
@@ -145,8 +147,11 @@ const criarHorasSelecao = () => {
   let horasDisponiveis = ''
 
   for(let i = 6; i < 23; i++){
-    horasDisponiveis += `<option value="${i}:00">${i}:00</option>`    
-    horasDisponiveis += `<option value="${i}:30">${i}:30</option>`    
+    const hora =  String(i).padStart(2, '0')
+    horasDisponiveis += `
+    <option value="${hora}:00">${hora}:00</option>`    
+    horasDisponiveis += `
+    <option value="${hora}:30">${hora}:30</option>`    
 
   }
  
@@ -156,3 +161,18 @@ const criarHorasSelecao = () => {
 }
 
 criarHorasSelecao()
+
+const concluirAtividade = (event) => {
+  const input = event.target
+  const dataDesteInput = input.value
+
+  const atividade = atividades.find((atividade) =>{
+    return atividade.data == dataDesteInput
+  })
+
+  if(!atividade) {
+    return
+  }
+
+  atividade.finalizada = !atividade.finalizada
+}
