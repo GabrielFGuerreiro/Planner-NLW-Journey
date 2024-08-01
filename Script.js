@@ -149,7 +149,7 @@ const criarHorasSelecao = () => {
     horasDisponiveis += `<option value="${i}:30">${i}:30</option>`    
 
   }
-
+ 
   document
   .querySelector('select[name="hora"]')
   .innerHTML = horasDisponiveis
