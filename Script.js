@@ -20,7 +20,7 @@ const atividade =
   finalizada: true
 }
 
-const atividades =
+let atividades =
 [
   atividade,
   {
@@ -67,7 +67,7 @@ const criarItemDaAtividade = (atividade) =>
 }
 
 const atualizarListaDeAtividades = () => {
-  const section = document.querySelector(`section`)
+  const section = document.querySelector('section')
   section.innerHTML = ''
 
   if(atividades.length == 0){
@@ -93,16 +93,18 @@ const salvarAtividade = (event) => {
   const data = `${dia} ${hora}`
 
   const novaAtividade = {
-    nome, // ou apenas o "nome"
-    data, // ou apenas o "data"
+    nome, 
+    data, 
     finalizada: false
   }
   
-  const atividadeExiste = atividades.find((a) => {
-    return 50min!
+  const atividadeExiste = atividades.find((atividade) => {
+    return atividade.data == novaAtividade.data
   })
 
-
+  if(atividadeExiste) {
+    return alert('Dia/hora não disponível')
+  }
 
   atividades = [novaAtividade, ...atividades]
   atualizarListaDeAtividades()
@@ -143,8 +145,8 @@ const criarHorasSelecao = () => {
   let horasDisponiveis = ''
 
   for(let i = 6; i < 23; i++){
-    horasDisponiveis += `<option value="${1}:00">${i}:00</option>`    
-    horasDisponiveis += `<option value="${1}:30">${i}:30</option>`    
+    horasDisponiveis += `<option value="${i}:00">${i}:00</option>`    
+    horasDisponiveis += `<option value="${i}:30">${i}:30</option>`    
 
   }
 
